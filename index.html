@@ -297,6 +297,183 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/cmakelist基本语法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子衿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只为一个小目标">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/09/cmakelist基本语法/" itemprop="url">cmakelist基本语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T07:34:51+08:00">
+                2018-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/cmakelist语法/" itemprop="url" rel="index">
+                    <span itemprop="name">cmakelist语法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>cmakelist编译语法</p>
+<p>cmakelist.txt</p>
+<p>1、使用文件</p>
+<p>2、编译文件</p>
+<p>3、生成文件</p>
+<p>4、对应arm架构</p>
+<p>一、javah  包名.类名  生成对应java方法的jni头文件</p>
+<p>注意执行javah命令在当前对应的类文件的同级目录下，否则找不到对应文件</p>
+<p>javah com.cmc.MainActivity </p>
+<p>二、系统标准的cmakelist.txt内容</p>
+<p>设定值和取值过程  set   ${变量名}</p>
+<p>set(VAR a b c)</p>
+<p># 输出 VAR = a;b;c</p>
+<p>message(“VAR = ${VAR}”)</p>
+<p>三、生成库名称以及引用的源文件，生成我们命名库库名称以及引用的文件路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">add_library( # Sets the name of the library.</span><br><span class="line">             native-lib</span><br><span class="line">             # Sets the library as a shared library.</span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             # Provides a relative path to your source file(s).</span><br><span class="line">             src/main/cpp/native-lib.cpp )</span><br></pre></td></tr></table></figure>
+<p>四、使用的android中自带的库并重命名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">find_library( # Sets the name of the path variable.</span><br><span class="line">              log-lib</span><br><span class="line"></span><br><span class="line">              # Specifies the name of the NDK library that</span><br><span class="line">              # you want CMake to locate.</span><br><span class="line">              log )</span><br></pre></td></tr></table></figure>
+<p>五、当前生成库连接的库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">target_link_libraries( # Specifies the target library.</span><br><span class="line">                       native-lib</span><br><span class="line">                       # Links the target library to the log library</span><br><span class="line">                       # included in the NDK.</span><br><span class="line">                       $&#123;log-lib&#125; )</span><br></pre></td></tr></table></figure>
+<p>链接下一层的库,math为当前目录下的一个文件夹，这样会构建此文件夹中的cmakelist，并且我们可以在</p>
+<p>target_link_libraries中链接math目录中的cmakelist生成的库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 添加 math 子目录</span><br><span class="line">add_subdirectory(math)</span><br></pre></td></tr></table></figure>
+<p>六、链接库地址</p>
+<p>链接库路径</p>
+<p>当前层链接下一层的动态库，并将下一层的和当前层的建立联系，通过target_link_libraries</p>
+<p>add_subdirectory(Lib)</p>
+<p>//将Main库和 Lib库建立联系</p>
+<p>target_link_libraries(Main Lib)</p>
+<p>//告诉工程生成一个库文件</p>
+<p>add_library(libname  [share | static ])</p>
+<p>七、其他</p>
+<p>file **.so  可以查看动态库是32位还是64位</p>
+<p>objdump -a  **.a  可以查看静态库是  32位还是64位</p>
+<p>genymotion8.0 arm 适配，不能够放到中文目录下拖拽，那样是会成为复制操作，而是英文目录拖拽到 虚拟机中</p>
+<p><a href="https://medium.com/@shakalaca/genymotion-use-arm-translation-on-8-x-image-81bb175e380f" target="_blank" rel="noopener">https://medium.com/@shakalaca/genymotion-use-arm-translation-on-8-x-image-81bb175e380f</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/my1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -576,14 +753,32 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
