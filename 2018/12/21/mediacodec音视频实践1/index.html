@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="mediacodec，音视频,">
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="1000篇优质文章的沉淀之路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="All tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="做一个录制视频的项目准备 一、参考文档 google的视频处理，但是只有视频 https://github.com/google/grafika 个人的音视频处理项目 https://github.com/saki4510t/AudioVideoRecordingSample 流程分析 GLSurfaceview    MediaVideoEncoder以及对应线程 1、  MediaAudioE">
+<meta name="keywords" content="mediacodec，音视频">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mediacodec音视频实践1">
+<meta property="og:url" content="http://yoursite.com/2018/12/21/mediacodec音视频实践1/index.html">
 <meta property="og:site_name" content="只为一个小目标">
-<meta property="og:description" content="1000篇优质文章的沉淀之路">
+<meta property="og:description" content="做一个录制视频的项目准备 一、参考文档 google的视频处理，但是只有视频 https://github.com/google/grafika 个人的音视频处理项目 https://github.com/saki4510t/AudioVideoRecordingSample 流程分析 GLSurfaceview    MediaVideoEncoder以及对应线程 1、  MediaAudioE">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-04T00:14:32.591Z">
+<meta property="og:updated_time" content="2018-12-21T14:32:04.344Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="All tags">
-<meta name="twitter:description" content="1000篇优质文章的沉淀之路">
+<meta name="twitter:title" content="mediacodec音视频实践1">
+<meta name="twitter:description" content="做一个录制视频的项目准备 一、参考文档 google的视频处理，但是只有视频 https://github.com/google/grafika 个人的音视频处理项目 https://github.com/saki4510t/AudioVideoRecordingSample 流程分析 GLSurfaceview    MediaVideoEncoder以及对应线程 1、  MediaAudioE">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/21/mediacodec音视频实践1/">
 
 
 
 
 
-  <title>All tags | 只为一个小目标</title>
+  <title>mediacodec音视频实践1 | 只为一个小目标</title>
   
 
 
@@ -294,40 +295,198 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/mediacodec音视频实践1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子衿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只为一个小目标">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">All tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 3 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/fresco图片/" style="font-size: 12px; color: #ccc">fresco图片</a> <a href="/tags/mediacodec，音视频/" style="font-size: 12px; color: #ccc">mediacodec，音视频</a> <a href="/tags/ndk构建/" style="font-size: 12px; color: #ccc">ndk构建</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">mediacodec音视频实践1</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T22:02:20+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/21/mediacodec音视频实践1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/21/mediacodec音视频实践1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>做一个录制视频的项目准备</p>
+<p>一、参考文档</p>
+<p>google的视频处理，但是只有视频</p>
+<p><a href="https://github.com/google/grafika" target="_blank" rel="noopener">https://github.com/google/grafika</a></p>
+<p>个人的音视频处理项目</p>
+<p><a href="https://github.com/saki4510t/AudioVideoRecordingSample" target="_blank" rel="noopener">https://github.com/saki4510t/AudioVideoRecordingSample</a></p>
+<p>流程分析</p>
+<p>GLSurfaceview    MediaVideoEncoder以及对应线程 1、  MediaAudioEncoder  以及对应线程2</p>
+<p>线程2不断将音频数据放到mediacodec中的buffer中，线程1则是一个不断循环取mediacodec中的buffer数据(包含视频数据和线程2放入的音频数据)并进行处理</p>
+<p>渲染线程</p>
+<p>二、关于mediacodec的文档</p>
+<p><a href="https://blog.csdn.net/qq_15893929/article/details/81709433" target="_blank" rel="noopener">https://blog.csdn.net/qq_15893929/article/details/81709433</a></p>
+<p>从Mediacodec中申请buffer区域，并将需要编码的数据放进去</p>
+<p>1、dequeueInputBuffer   从input缓冲区中申请buffer，方法返回对应的变化index</p>
+<p>2、getInputBuffer            获取总的输入缓冲区，类似 ByteBuffer[]，可以通过index获取缓冲区  byteBuffer[index] 获取buffer</p>
+<p>  类似</p>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>final ByteBuffer[] inputBuffers = mMediaCodec.getInputBuffers();</td>
+</tr>
+<tr>
+<td>final ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];</td>
+</tr>
+</tbody>
+</table>
+<p>3、queueInputBuffer ，可以将2中的buffer通过此方法将buffer加入Mediacodec的队列，Mediacodec会从buffer中取出数据</p>
+<p>从Mediacodec中获取buffer，buffer中是编码后的数据</p>
+<p>1、dequeueOutputBuffer 从output缓冲区申请bufffer，返回buffer编号index</p>
+<p>2、getOutputBuffer  ，通过此方法获取总的buffer数组，然后通过index获取对应的buffer</p>
+<p>3、releaseOutputBuffer  将buffer放回output缓冲区队列</p>
+<p>三、一般mediacodec的处理流程</p>
+<p>surfaceview预览   ——&gt;  GLSurfaceview中流数据（在gpu中取）——-&gt; mediacodec通过  MediaCodec.createInputSurface()创建Surface 来实现从直接内存中获取流数据——–&gt;  mediacodec编码流数据成H264—————&gt;  使用MediaMuxer将视频数据合成 MP4文件(当然这里可以同步加上音频数据)</p>
+<p>mediacodec直接使用GLSurfaceview的好处</p>
+<p><a href="https://juejin.im/entry/5b8e254851882542d416d41c" target="_blank" rel="noopener">https://juejin.im/entry/5b8e254851882542d416d41c</a></p>
+<p><a href="https://codeday.me/bug/20181025/338215.html" target="_blank" rel="noopener">https://codeday.me/bug/20181025/338215.html</a></p>
+<h2 id="利用GPU-Image直接渲染"><a href="#利用GPU-Image直接渲染" class="headerlink" title="利用GPU Image直接渲染"></a>利用GPU Image直接渲染</h2><p>如果我们configure传surface，我们可以通过gpu传递的方法，直接进行渲染，这样可以减少GPU <-> CPU之间的内存拷贝。首先configure时候传surface，我们调用ouputBuffer之后，获得输出缓存index，得到渲染时候，直接调用releaseOutputBuffer(handle,idx,true),则解码器的图像直接渲染到surface图像上了。</-></p>
+<p>这样虽然效率高，但是弊端也很明显，第一，那就是图像后处理做不了。第二，这种方案依赖解码器缓存，这会带来一些问题。如果解码器被提前析构，则缓存内容都没有了。又或者一些播放业务逻辑对解码器缓存要求较多（比如倒放），这也做不了。</p>
+<p>比较出名的mediacodec的文档</p>
+<p><a href="https://bigflake.com/mediacodec/" target="_blank" rel="noopener">https://bigflake.com/mediacodec/</a></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mediacodec，音视频/" rel="tag"># mediacodec，音视频</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/15/fresco实践/" rel="next" title="fresco实践">
+                <i class="fa fa-chevron-left"></i> fresco实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -367,8 +526,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="子衿">
           <p class="site-author-name" itemprop="name">子衿</p>
@@ -452,6 +620,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用GPU-Image直接渲染"><span class="nav-number">1.</span> <span class="nav-text">利用GPU Image直接渲染</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -581,10 +765,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -605,9 +789,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/tags/index.html';
-          this.page.identifier = 'tags/index.html';
-          this.page.title = 'All tags';
+          this.page.url = 'http://yoursite.com/2018/12/21/mediacodec音视频实践1/';
+          this.page.identifier = '2018/12/21/mediacodec音视频实践1/';
+          this.page.title = 'mediacodec音视频实践1';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-kongkonger-github-io.disqus.com/embed.js';
