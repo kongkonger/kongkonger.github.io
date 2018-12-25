@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="参考 下面音视频混合的例子 https://github.com/saki4510t/AudioVideoRecordingSample 以及google 视频的例子 https://github.com/google/grafika 将音频的整合到 google的视频录制中 主要修改内容 1、VideoEncoderCore 的方法 123456789101112131415161718publ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/11/21/hello-world/index.html">
+<meta property="og:title" content="mediacodec实践2整合">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/mediacodec实践2整合/index.html">
 <meta property="og:site_name" content="只为一个小目标">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="参考 下面音视频混合的例子 https://github.com/saki4510t/AudioVideoRecordingSample 以及google 视频的例子 https://github.com/google/grafika 将音频的整合到 google的视频录制中 主要修改内容 1、VideoEncoderCore 的方法 123456789101112131415161718publ">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T14:56:36.450Z">
+<meta property="og:updated_time" content="2018-12-25T15:53:05.224Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="mediacodec实践2整合">
+<meta name="twitter:description" content="参考 下面音视频混合的例子 https://github.com/saki4510t/AudioVideoRecordingSample 以及google 视频的例子 https://github.com/google/grafika 将音频的整合到 google的视频录制中 主要修改内容 1、VideoEncoderCore 的方法 123456789101112131415161718publ">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/21/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/mediacodec实践2整合/">
 
 
 
 
 
-  <title>Hello World | 只为一个小目标</title>
+  <title>mediacodec实践2整合 | 只为一个小目标</title>
   
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/mediacodec实践2整合/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子衿">
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">mediacodec实践2整合</h1>
         
 
         <div class="post-meta">
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T23:30:05+08:00">
-                2018-11-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-25T23:34:26+08:00">
+                2018-12-25
               </time>
             
 
@@ -354,8 +354,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/21/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/21/hello-world/" itemprop="commentCount"></span>
+                <a href="/2018/12/25/mediacodec实践2整合/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/25/mediacodec实践2整合/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -383,15 +383,34 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>参考</p>
+<p>下面音视频混合的例子</p>
+<p><a href="https://github.com/saki4510t/AudioVideoRecordingSample" target="_blank" rel="noopener">https://github.com/saki4510t/AudioVideoRecordingSample</a></p>
+<p>以及google 视频的例子</p>
+<p><a href="https://github.com/google/grafika" target="_blank" rel="noopener">https://github.com/google/grafika</a></p>
+<p>将音频的整合到 google的视频录制中</p>
+<p>主要修改内容</p>
+<p>1、VideoEncoderCore 的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void drainEncoder(boolean endOfStream) &#123;`</span><br><span class="line"></span><br><span class="line">`改为`</span><br><span class="line"></span><br><span class="line">   `final MediaFormat format = mMediaCodec.getOutputFormat(); // API &gt;= 16`</span><br><span class="line">               	`mTrackIndex = muxer.addTrack(format);`</span><br><span class="line">               	`mMuxerStarted = true;`</span><br><span class="line">               	`if (!muxer.start()) &#123;`</span><br><span class="line">               		`// we should wait until muxer is ready`</span><br><span class="line">               		`synchronized (muxer) &#123;`</span><br><span class="line">	               		`while (!muxer.isStarted())`</span><br><span class="line">						`try &#123;`</span><br><span class="line">							`muxer.wait(100);`</span><br><span class="line">						`&#125; catch (final InterruptedException e) &#123;`</span><br><span class="line">							`break LOOP;`</span><br><span class="line">						`&#125;`</span><br><span class="line">               		`&#125;`</span><br><span class="line">               	`&#125;</span><br></pre></td></tr></table></figure>
+<p>2、修改 VideoEncoderCore类的下面的变量</p>
+<p>private MediaMuxer mMuxer;</p>
+<p>为</p>
+<p>public class MediaMuxerWrapper {类型的对象</p>
+<p>3、public class TextureMovieEncoder implements Runnable { 类的下面的方法</p>
+<pre><code>     public void frameAvailable(SurfaceTexture st) {
+synchronized (mReadyFence) {
+    if (!mReady) {
+        return;
+    }
+}
+
+添加  if(!mReady || !mIsStarted)  添加新的 mIsStarted变量
+</code></pre><p>4、在 TextureMovieEncoder类中专门添加开始方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> public void startVideoRecording()&#123;</span><br><span class="line"></span><br><span class="line"> mIsStarted= true;//专门控制开始的变量</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、在MediaMuxerWrapper 添加方法，添加引用TextureMovieEncoder</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">void addVideoEncoder(final TextureMovieEncoder encoder) &#123;</span><br></pre></td></tr></table></figure>
+<p>以上即可愉快的使得 grafika的视频功能也可以有语音了</p>
+<p>另关于  grafika和我们使用的AudioVideoRecordingSample的流程讲解如下</p>
 
       
     </div>
@@ -416,15 +435,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/21/mediacodec音视频实践1/" rel="next" title="mediacodec音视频实践1">
+                <i class="fa fa-chevron-left"></i> mediacodec音视频实践1
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/04/my1/" rel="prev" title="my1">
-                my1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -483,17 +502,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="子衿">
           <p class="site-author-name" itemprop="name">子衿</p>
@@ -577,22 +587,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -746,9 +740,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/11/21/hello-world/';
-          this.page.identifier = '2018/11/21/hello-world/';
-          this.page.title = 'Hello World';
+          this.page.url = 'http://yoursite.com/2018/12/25/mediacodec实践2整合/';
+          this.page.identifier = '2018/12/25/mediacodec实践2整合/';
+          this.page.title = 'mediacodec实践2整合';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-kongkonger-github-io.disqus.com/embed.js';
