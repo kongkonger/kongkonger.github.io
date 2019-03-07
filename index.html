@@ -554,10 +554,13 @@
 <p>参考  <a href="https://blog.csdn.net/yincheng886337/article/details/50524890" target="_blank" rel="noopener">https://blog.csdn.net/yincheng886337/article/details/50524890</a><br>1、通过日志OOM现象，切换到同一个页面，不断进行重复切换过程中，发现切换到同一个页面，内存有增加现象，<br>说明其他页面可能有内存泄漏现象<br>2、通过MAT查看 系统报出的疑似泄漏对象，通过incoming reference 查看引用链条<br>3、确定泄漏原因</p>
 <p>1、Histogram具体对象泄漏<br>​    1.1、按照包来找到最大的内存对象<br>​    <img src="http://img.blog.csdn.net/20161123234532899" alt="这里写图片描述"></p>
 <pre><code>并通过size来筛选其中大于1000在Retained Heap中输入，或者通过你所知道的可能占用内存的通用父类进行筛选在Package/Class中输入fragment
-</code></pre><p><img src="http://img.blog.csdn.net/20161123235117266" alt="这里写图片描述"></p>
+</code></pre><p>​    </p>
+<p><img src="http://img.blog.csdn.net/20161123235117266" alt="这里写图片描述"></p>
 <p>2、Dominator Tree分析具体图片对象泄漏<br>通过Dominator Tree来找到当前最占用内存的对象，从大到小进行排列<br>其中Shallow Heap 自身占用内存  和 Retained Heap引用对象内存，不成比例的，如红色标注的第一种情况，是很有可能是内存泄漏的重点<br>对于Shallow Heap  和 Retained Heap大小相等的这种对象，一般不是内存泄漏，但对象这么大本身也可能存在问题，可以查看具体对象是什么，再做优化</p>
 <p><img src="http://img.blog.csdn.net/20161123235933070" alt="这里写图片描述"></p>
-<p>3、通过引用链具体分析内存引用点，查看drawable外部引用<br><img src="http://img.blog.csdn.net/20161124000551270" alt="这里写图片描述"><br>并找到buffer，通过GIMP工具讲save的图片打开，注意宽高对应,save的格式为 xxx.data<br><img src="http://img.blog.csdn.net/20161124000735163" alt="这里写图片描述"><br>之后通过GIMP工具查看到图片和本地app中图片对应，找到具体的图片泄漏代码，去除图片的引用，达到释放图片所占用内存的目的<br>4、通过GC找到对象泄漏点（注意去除虚引用，弱引用和软引用，具体app不便透露请见谅），来进行对象释放<br><img src="http://img.blog.csdn.net/20161124001158999" alt="这里写图片描述"><br>注意红线方向从上到下是一条导致底部对象无法释放的引用链，其中任何一环的对象释放，都可以此环对象下的所有对象释放，那么我们可以看到，如果释放了mLocationListeners，那么底部的this对象便会释放，所以可以回到我们的代码进行将mLocationListeners引用释放<br><img src="http://img.blog.csdn.net/20161124001609688" alt="这里写图片描述"></p>
+<p>3、通过引用链具体分析内存引用点，查看drawable外部引用<br><img src="http://img.blog.csdn.net/20161124000551270" alt="这里写图片描述"><br>并找到buffer，通过GIMP工具讲save的图片打开，注意宽高对应,save的格式为 xxx.data,</p>
+<p>注意GIMP打开，调整图片宽高为 mBitmap对应的宽高，并设置格式为RGB Alpha，有时可能适当增加像素位移，然后查看对应的图片</p>
+<p><img src="http://img.blog.csdn.net/20161124000735163" alt="这里写图片描述"><br>之后通过GIMP工具查看到图片和本地app中图片对应，找到具体的图片泄漏代码，去除图片的引用，达到释放图片所占用内存的目的<br>4、通过GC找到对象泄漏点（注意去除虚引用，弱引用和软引用，具体app不便透露请见谅），来进行对象释放<br><img src="http://img.blog.csdn.net/20161124001158999" alt="这里写图片描述"><br>注意红线方向从上到下是一条导致底部对象无法释放的引用链，其中任何一环的对象释放，都可以此环对象下的所有对象释放，那么我们可以看到，如果释放了mLocationListeners，那么底部的this对象便会释放，所以可以回到我们的代码进行将mLocationListeners引用释放<br><img src="http://img.blog.csdn.net/20161124001609688" alt="这里写图片描述"></p>
 <p>#4、总结内存泄漏的解决办法<br>handler<br>引用换为弱引用<br>webview独立进程等<br>图片释放<br>具体网络搜索暂不详述。</p>
 <p>以上为简略分析内存泄漏的方式和方法，仅作抛砖引玉，谢谢阅读！</p>
 
