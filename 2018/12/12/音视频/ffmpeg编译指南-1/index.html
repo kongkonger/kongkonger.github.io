@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="音视频,">
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="1000篇优质文章的沉淀之路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="commonweal">
-<meta property="og:url" content="http://yoursite.com/commonweal/index.html">
+<meta name="description" content="ffmpeg 低版本编译 编译环境 ubuntu 16.04.5LTS x86_64android-ndk64-r10e-linux-x86_64 https://developer.android.com/ndk/downloads/older_releases ffmpeg 2.6.2 http://www.ffmpeg.org/releases/ 编译脚本修改 参照 https://gith">
+<meta name="keywords" content="音视频">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ffmpeg编译指南-1">
+<meta property="og:url" content="http://yoursite.com/2018/12/12/音视频/ffmpeg编译指南-1/index.html">
 <meta property="og:site_name" content="只为一个小目标">
-<meta property="og:description" content="1000篇优质文章的沉淀之路">
+<meta property="og:description" content="ffmpeg 低版本编译 编译环境 ubuntu 16.04.5LTS x86_64android-ndk64-r10e-linux-x86_64 https://developer.android.com/ndk/downloads/older_releases ffmpeg 2.6.2 http://www.ffmpeg.org/releases/ 编译脚本修改 参照 https://gith">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-03T23:16:12.849Z">
+<meta property="og:updated_time" content="2020-04-05T14:48:08.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="commonweal">
-<meta name="twitter:description" content="1000篇优质文章的沉淀之路">
+<meta name="twitter:title" content="ffmpeg编译指南-1">
+<meta name="twitter:description" content="ffmpeg 低版本编译 编译环境 ubuntu 16.04.5LTS x86_64android-ndk64-r10e-linux-x86_64 https://developer.android.com/ndk/downloads/older_releases ffmpeg 2.6.2 http://www.ffmpeg.org/releases/ 编译脚本修改 参照 https://gith">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/commonweal/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/12/音视频/ffmpeg编译指南-1/">
 
 
 
 
 
-  <title>commonweal | 只为一个小目标</title>
+  <title>ffmpeg编译指南-1 | 只为一个小目标</title>
   
 
 
@@ -294,33 +295,180 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/音视频/ffmpeg编译指南-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子衿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只为一个小目标">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">commonweal</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">ffmpeg编译指南-1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T07:51:07+08:00">
+                2018-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/12/音视频/ffmpeg编译指南-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/12/音视频/ffmpeg编译指南-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>ffmpeg 低版本编译</p>
+<p>编译环境</p>
+<p>ubuntu 16.04.5LTS x86_64<br>android-ndk64-r10e-linux-x86_64</p>
+<p><a href="https://developer.android.com/ndk/downloads/older_releases" target="_blank" rel="noopener">https://developer.android.com/ndk/downloads/older_releases</a></p>
+<p>ffmpeg 2.6.2</p>
+<p><a href="http://www.ffmpeg.org/releases/" target="_blank" rel="noopener">http://www.ffmpeg.org/releases/</a></p>
+<p>编译脚本修改</p>
+<p>参照</p>
+<p><a href="https://github.com/dxjia/ffmpeg-compile-shared-library-for-android" target="_blank" rel="noopener">https://github.com/dxjia/ffmpeg-compile-shared-library-for-android</a></p>
+<p>1、configure修改</p>
+<p>##Step 2 修改ffmpeg/configure文<br>将</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SLIBNAME_WITH_MAJOR=&apos;$(SLIBNAME).$(LIBMAJOR)&apos;</span><br><span class="line">LIB_INSTALL_EXTRA_CMD=&apos;$$(RANLIB)&quot;$(LIBDIR)/$(LIBNAME)&quot;&apos;</span><br><span class="line">SLIB_INSTALL_NAME=&apos;$(SLIBNAME_WITH_VERSION)&apos;</span><br><span class="line">SLIB_INSTALL_LINKS=&apos;$(SLIBNAME_WITH_MAJOR)$(SLIBNAME)&apos;</span><br></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SLIBNAME_WITH_MAJOR=&apos;$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)&apos;</span><br><span class="line">LIB_INSTALL_EXTRA_CMD=&apos;$$(RANLIB)&quot;$(LIBDIR)/$(LIBNAME)&quot;&apos;</span><br><span class="line">SLIB_INSTALL_NAME=&apos;$(SLIBNAME_WITH_MAJOR)&apos;</span><br><span class="line">SLIB_INSTALL_LINKS=&apos;$(SLIBNAME)&apos;</span><br></pre></td></tr></table></figure>
+<p>之后执行 ./configure</p>
+<p>2、新建编译build_android.sh脚本文件</p>
+<p>注意</p>
+<p>(1)export TMPDIR=/home/djia/tmpdir 作为临时文件，可有可无</p>
+<p>(2)PREFIX=/root/workspace/ffmpeg_shared_compile/dxjia_ffmpeg_install/arm/ 为对应编译生成的 so库和include头文件</p>
+<p>(3)一定要使用 r10e的ndk，之前使用 r16b 以及r10e之上的ndk总是报错</p>
+<p>(4) chmod 775  build_android.sh</p>
+<p>(5)./build_android.sh 执行编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">export TMPDIR=/home/djia/tmpdir</span><br><span class="line">NDK=/home/djia/android/android-ndk-r10</span><br><span class="line">SYSROOT=$NDK/platforms/android-16/arch-arm/</span><br><span class="line">TOOLCHAIN=/home/djia/android/android-ndk-r10/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64</span><br><span class="line">CPU=arm</span><br><span class="line">PREFIX=/root/workspace/ffmpeg_shared_compile/dxjia_ffmpeg_install/arm/</span><br><span class="line">ADDI_CFLAGS=&quot;-marm&quot;</span><br><span class="line">function build_one</span><br><span class="line">&#123;</span><br><span class="line">./configure \</span><br><span class="line">--prefix=$PREFIX \</span><br><span class="line">--enable-shared \</span><br><span class="line">--disable-static \</span><br><span class="line">--disable-doc \</span><br><span class="line">--disable-ffmpeg \</span><br><span class="line">--disable-ffplay \</span><br><span class="line">--disable-ffprobe \</span><br><span class="line">--disable-ffserver \</span><br><span class="line">--disable-doc \</span><br><span class="line">--disable-symver \</span><br><span class="line">--enable-small \</span><br><span class="line">--cross-prefix=$TOOLCHAIN/bin/arm-linux-androideabi- \</span><br><span class="line">--target-os=linux \</span><br><span class="line">--arch=arm \</span><br><span class="line">--enable-cross-compile \</span><br><span class="line">--sysroot=$SYSROOT \</span><br><span class="line">--extra-cflags=&quot;-Os -fpic $ADDI_CFLAGS&quot; \</span><br><span class="line">--extra-ldflags=&quot;$ADDI_LDFLAGS&quot; \</span><br><span class="line">$ADDITIONAL_CONFIGURE_FLAG</span><br><span class="line">make clean</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">&#125;</span><br><span class="line">build_one</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/音视频/" rel="tag"># 音视频</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/09/音视频/ffmpeg编译指南/" rel="next" title="ffmpeg编译指南">
+                <i class="fa fa-chevron-left"></i> ffmpeg编译指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/15/图片/fresco实践/" rel="prev" title="fresco实践">
+                fresco实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -574,10 +722,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -598,9 +746,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/commonweal/index.html';
-          this.page.identifier = 'commonweal/index.html';
-          this.page.title = 'commonweal';
+          this.page.url = 'http://yoursite.com/2018/12/12/音视频/ffmpeg编译指南-1/';
+          this.page.identifier = '2018/12/12/音视频/ffmpeg编译指南-1/';
+          this.page.title = 'ffmpeg编译指南-1';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-kongkonger-github-io.disqus.com/embed.js';

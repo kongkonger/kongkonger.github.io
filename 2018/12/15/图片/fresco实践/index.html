@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="图片,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="fresco作为android重要的图片加载利器 具体参考 https://www.fresco-cn.org/docs/getting-started.html fresco初始化 1、可以自定义网络情况，以及使用svg解析，以及自定义缓存大小等 123ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)">
+<meta name="keywords" content="图片">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fresco实践">
+<meta property="og:url" content="http://yoursite.com/2018/12/15/图片/fresco实践/index.html">
+<meta property="og:site_name" content="只为一个小目标">
+<meta property="og:description" content="fresco作为android重要的图片加载利器 具体参考 https://www.fresco-cn.org/docs/getting-started.html fresco初始化 1、可以自定义网络情况，以及使用svg解析，以及自定义缓存大小等 123ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-05T14:47:04.192Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="fresco实践">
+<meta name="twitter:description" content="fresco作为android重要的图片加载利器 具体参考 https://www.fresco-cn.org/docs/getting-started.html fresco初始化 1、可以自定义网络情况，以及使用svg解析，以及自定义缓存大小等 123ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/15/图片/fresco实践/">
+
+
+
+
+
+  <title>fresco实践 | 只为一个小目标</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e85d2933cf3f92d887a63f7d83c4ab81";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">只为一个小目标</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/15/图片/fresco实践/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子衿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只为一个小目标">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">fresco实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-15T09:57:12+08:00">
+                2018-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/15/图片/fresco实践/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/15/图片/fresco实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>fresco作为android重要的图片加载利器</p>
+<p>具体参考</p>
+<p><a href="https://www.fresco-cn.org/docs/getting-started.html" target="_blank" rel="noopener">https://www.fresco-cn.org/docs/getting-started.html</a></p>
+<p>fresco初始化</p>
+<p>1、可以自定义网络情况，以及使用svg解析，以及自定义缓存大小等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)</span><br><span class="line">        .setRequestListeners(listeners)</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>2、fresco初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fresco.initialize(this);</span><br></pre></td></tr></table></figure>
+<p>3、使用simpledrawview在xml建立控件</p>
+<p>​    3.1使用SimpleDraweeView方式加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Uri uri = Uri.parse(&quot;https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png&quot;);</span><br><span class="line">SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);</span><br><span class="line">draweeView.setImageURI(uri);</span><br></pre></td></tr></table></figure>
+<p>​    3.2 使用DraweeController方式进行加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ControllerListener listener = new BaseControllerstener() &#123;...&#125;</span><br><span class="line"></span><br><span class="line">DraweeController controller = Fresco.newDraweeControllerBuilder()</span><br><span class="line">    .setUri(uri)</span><br><span class="line">    .setTapToRetryEnabled(true)</span><br><span class="line">    .setOldController(mSimpleDraweeView.getController())</span><br><span class="line">    .setControllerListener(listener)</span><br><span class="line">    .build();</span><br><span class="line"></span><br><span class="line">mSimpleDraweeView.setController(controller);</span><br></pre></td></tr></table></figure>
+<p>4、fresco本身的加载流程就是</p>
+<p>​       默认初始化后</p>
+<p>​      使用责任链的方式进行加载，有 网络、内存、磁盘缓存多级责任链，从分发和调用回路都会有响应的处理，</p>
+<p>处理原则安装     内存优先查找 、然后磁盘、然后网络</p>
+<p>5、更高级的使用方式，由于fresco本身内部的bitmap是不允许传递到类之外的，当你想要自定义加载的时候</p>
+<p><a href="https://www.fresco-cn.org/docs/datasources-datasubscribers.html" target="_blank" rel="noopener">https://www.fresco-cn.org/docs/datasources-datasubscribers.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ImagePipeline imagePipeline = Fresco.getImagePipeline();</span><br><span class="line">DataSource&lt;CloseableReference&lt;CloseableImage&gt;&gt;</span><br><span class="line">    dataSource = imagePipeline.fetchDecodedImage(imageRequest, callerContext);</span><br></pre></td></tr></table></figure>
+<p>或者类似</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> DataSource&lt;CloseableReference&lt;T&gt;&gt; dataSource = ...;</span><br><span class="line">DataSubscriber&lt;CloseableReference&lt;T&gt;&gt; dataSubscriber =</span><br><span class="line">new BaseDataSubscriber&lt;CloseableReference&lt;T&gt;&gt;() &#123;</span><br><span class="line">@Override</span><br><span class="line">protected void onNewResultImpl(</span><br><span class="line">DataSource&lt;CloseableReference&lt;T&gt;&gt; dataSource) &#123;</span><br><span class="line">if (!dataSource.isFinished()) &#123;</span><br><span class="line">return;</span><br><span class="line">&#125;</span><br><span class="line">CloseableReference&lt;T&gt; ref = dataSource.getResult();</span><br><span class="line">if (ref != null) &#123;</span><br><span class="line">try &#123;</span><br><span class="line">T result = ref.get();</span><br><span class="line">...</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">CloseableReference.closeSafely(ref);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">@Override</span><br><span class="line">protected void onFailureImpl(DataSource&lt;CloseableReference&lt;T&gt;&gt; dataSource) &#123;</span><br><span class="line">Throwable t = dataSource.getFailureCause();</span><br><span class="line">// handle failure</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">dataSource.subscribe(dataSubscriber, executor);</span><br></pre></td></tr></table></figure>
+<p>对于如果没有调用CloseableReference.closeSafely(ref); 则对应的bitmap则会不受到fresco内部内存管理的约束，也意味着不会被及时回收，这样虽然bitmap可以传递到外部，但是会出现内存泄漏问题</p>
+<p>此时为了解决此问题，需要参照DraweeView对于内存释放这块来解决把fresco中的bitmap拿出来，且管理释放的问题</p>
+<p>回收方法具体是参照fresco回收对应回收的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class DraweeView&lt;DH extends DraweeHierarchy&gt; extends ImageView &#123;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">public class RootDrawable extends ForwardingDrawable implements VisibilityAwareDrawable &#123;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class DraweeHolder&lt;DH extends DraweeHierarchy&gt;</span><br><span class="line">    implements VisibilityCallback &#123;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AbstractDraweeController&lt;T, INFO&gt; implements</span><br><span class="line">    DraweeController,</span><br><span class="line">    DeferredReleaser.Releasable,</span><br><span class="line">    GestureDetector.ClickListener &#123;</span><br></pre></td></tr></table></figure>
+<p>重要点</p>
+<p>1、  添加view的 attach和 detach的监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onViewAttachedToWindow(View view) &#123;</span><br><span class="line">    myOnAttach();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onViewDetachedFromWindow(View view) &#123;</span><br><span class="line">    myOnDetach();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>参照 mDeferredReleaser 是一个延时回收的作用，首先将要回收的添加到队列中，发现又需要显示的时候，则取消队列中的回收</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AbstractDraweeController&lt;T, INFO&gt; implements</span><br><span class="line">    DraweeController,</span><br><span class="line">    DeferredReleaser.Releasable,</span><br><span class="line">    GestureDetector.ClickListener &#123;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public void myOnAttach() &#123;</span><br><span class="line">  //消息机制的回收，停止当前回收</span><br><span class="line">  mDeferredReleaser.cancelDeferredRelease(this);</span><br><span class="line">  mIsAttached = true;</span><br><span class="line">  //执行请求图片动作</span><br><span class="line">  if (!mIsRequestSubmitted) &#123;</span><br><span class="line">    submitRequest();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void myOnDetach() &#123;</span><br><span class="line">  mIsAttached = false;</span><br><span class="line">  mDeferredReleaser.scheduleDeferredRelease(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于listview，不是recyclerview的情况还要让此view重写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onStartTemporaryDetach() &#123;</span><br><span class="line">  super.onStartTemporaryDetach();</span><br><span class="line"></span><br><span class="line">  myOnDetach();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onFinishTemporaryDetach() &#123;</span><br><span class="line">  super.onFinishTemporaryDetach();</span><br><span class="line"> </span><br><span class="line">  myOnAttach();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、此view也要实现，并将此回调设置到 我们自定义的类似如 backgrounddrawable类中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">VisibilityCallback  接口</span><br><span class="line">/**</span><br><span class="line"> * Callback used to notify about drawable&apos;s visibility changes.</span><br><span class="line"> */</span><br><span class="line">public interface VisibilityCallback &#123;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Called when the drawable&apos;s visibility changes.</span><br><span class="line">   *</span><br><span class="line">   * @param visible whether or not the drawable is visible</span><br><span class="line">   */</span><br><span class="line">  void onVisibilityChange(boolean visible);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Called when the drawable gets drawn.</span><br><span class="line">   */</span><br><span class="line">  void onDraw();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对应我们view中实现接口的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Callback used to notify about top-level-drawable&apos;s visibility changes.</span><br><span class="line"> */</span><br><span class="line">@Override</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">protected void onVisibilityChanged(</span><br><span class="line">   int visibility) &#123;</span><br><span class="line"></span><br><span class="line">if (mIsVisible == isVisible) &#123;</span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line">    mIsVisible = isVisible;</span><br><span class="line">    attachOrDetachController();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void attachOrDetachController() &#123;</span><br><span class="line">  if (mIsHolderAttached &amp;&amp; mIsVisible) &#123;</span><br><span class="line">      myOnAttach();</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">     myOnDetach();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现我们的onDraw接口内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Callback used to notify about top-level-drawable being drawn.</span><br><span class="line"> */</span><br><span class="line">@Override</span><br><span class="line">public void onDraw() &#123;</span><br><span class="line">  // draw is only expected if the controller is attached</span><br><span class="line">  if (mIsControllerAttached) &#123;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  mIsHolderAttached = true;</span><br><span class="line">  mIsVisible = true;</span><br><span class="line">  attachOrDetachController();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、我们自定义的backgrounddrawable回调时机是，重写drawable的方法，在我们主动设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean setVisible(boolean visible, boolean restart) &#123;</span><br><span class="line">  if (mVisibilityCallback != null) &#123;</span><br><span class="line">    mVisibilityCallback.onVisibilityChange(visible);</span><br><span class="line">  &#125;</span><br><span class="line">  return super.setVisible(visible, restart);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重写方法drawable的draw方法回调我们自定义view 实现接口的  onDraw方法</p>
+<p>标识1 那里 这里需要加一个判断，即当前是否存在对应的backgrounddrawable，如果没有事不能够调用draw方法的，调用会有崩溃的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@SuppressLint(&quot;WrongCall&quot;)</span><br><span class="line">@Override</span><br><span class="line">public void draw(Canvas canvas) &#123;</span><br><span class="line">  if (!isVisible()) &#123;</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  if (mVisibilityCallback != null) &#123;</span><br><span class="line">    mVisibilityCallback.onDraw();</span><br><span class="line">  &#125;</span><br><span class="line">  //标识1  这里需要加一个判断，即当前是否存在对应的backgrounddrawable，如果没有事不能够调用draw方法的，调用会有崩溃的问题</span><br><span class="line">  super.draw(canvas);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图片/" rel="tag"># 图片</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/12/音视频/ffmpeg编译指南-1/" rel="next" title="ffmpeg编译指南-1">
+                <i class="fa fa-chevron-left"></i> ffmpeg编译指南-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/21/音视频/mediacodec音视频实践1/" rel="prev" title="mediacodec音视频实践1">
+                mediacodec音视频实践1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="子衿">
+          <p class="site-author-name" itemprop="name">子衿</p>
+           
+              <p class="site-description motion-element" itemprop="description">1000篇优质文章的沉淀之路</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kongkonger" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子衿</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://https-kongkonger-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/12/15/图片/fresco实践/';
+          this.page.identifier = '2018/12/15/图片/fresco实践/';
+          this.page.title = 'fresco实践';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-kongkonger-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
