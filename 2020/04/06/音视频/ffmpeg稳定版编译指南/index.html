@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="只为一个小目标">
 <meta property="og:description" content="一、编译环境 ubunto虚拟机 14.04或者16.04都可以 openjdk 1.8.0_242或者jdk1.8 linux虚拟机下ndk r14b 编译ffmpeg  3.2.5  3.4.5 或者4.1.4均可以成功 二、编译配置 1、下载ffmpeg git clone  https://github.com/FFmpeg/FFmpeg.git git tag  查看分支 git che">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-06T14:39:54.875Z">
+<meta property="og:updated_time" content="2020-04-06T14:48:56.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ffmpeg稳定版编译指南">
 <meta name="twitter:description" content="一、编译环境 ubunto虚拟机 14.04或者16.04都可以 openjdk 1.8.0_242或者jdk1.8 linux虚拟机下ndk r14b 编译ffmpeg  3.2.5  3.4.5 或者4.1.4均可以成功 二、编译配置 1、下载ffmpeg git clone  https://github.com/FFmpeg/FFmpeg.git git tag  查看分支 git che">
@@ -347,6 +347,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/音视频/" itemprop="url" rel="index">
+                    <span itemprop="name">音视频</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -422,7 +444,7 @@
 <p>#APP_PIE := false<br>APP_STL := stlport_static</p>
 <p>#APP_STL := c++_static</p>
 <p>3、build.gradle配置 ndk和sourceSets</p>
-<p>defaultConfig {<br>​        applicationId “com.vivo.demo”<br>​        minSdkVersion 16<br>​        targetSdkVersion 26<br>​        versionCode 1<br>​        versionName “1.0”<br>//        testInstrumentationRunner “androidx.test.runner.AndroidJUnitRunner”   ‘armeabi-v7a’,<br>​        ndk { abiFilters ‘armeabi’, ‘armeabi-v7a’ }<br>​        sourceSets {<br>​            main {<br>​                jniLibs.srcDirs = [‘libs’] // i.e. ‘libs’<br>​            }<br>​        }<br>​    }</p>
+<p>defaultConfig {<br>​        applicationId “”<br>​        minSdkVersion 16<br>​        targetSdkVersion 26<br>​        versionCode 1<br>​        versionName “1.0”<br>//        testInstrumentationRunner “androidx.test.runner.AndroidJUnitRunner”   ‘armeabi-v7a’,<br>​        ndk { abiFilters ‘armeabi’, ‘armeabi-v7a’ }<br>​        sourceSets {<br>​            main {<br>​                jniLibs.srcDirs = [‘libs’] // i.e. ‘libs’<br>​            }<br>​        }<br>​    }</p>
 <p>四、容易出错点</p>
 <p>1、Android.mk需要添加</p>
 <p>LOCAL_ARM_MODE := arm</p>
@@ -578,7 +600,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
