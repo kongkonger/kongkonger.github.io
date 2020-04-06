@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="ffmpeg编译,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一、编译环境 ubunto虚拟机 14.04或者16.04都可以 openjdk 1.8.0_242或者jdk1.8 linux虚拟机下ndk r14b 编译ffmpeg  3.2.5  3.4.5 或者4.1.4均可以成功 二、编译配置 1、下载ffmpeg git clone  https://github.com/FFmpeg/FFmpeg.git git tag  查看分支 git che">
+<meta name="keywords" content="ffmpeg编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ffmpeg稳定版编译指南">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/音视频/ffmpeg稳定版编译指南/index.html">
+<meta property="og:site_name" content="只为一个小目标">
+<meta property="og:description" content="一、编译环境 ubunto虚拟机 14.04或者16.04都可以 openjdk 1.8.0_242或者jdk1.8 linux虚拟机下ndk r14b 编译ffmpeg  3.2.5  3.4.5 或者4.1.4均可以成功 二、编译配置 1、下载ffmpeg git clone  https://github.com/FFmpeg/FFmpeg.git git tag  查看分支 git che">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-06T14:39:54.875Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ffmpeg稳定版编译指南">
+<meta name="twitter:description" content="一、编译环境 ubunto虚拟机 14.04或者16.04都可以 openjdk 1.8.0_242或者jdk1.8 linux虚拟机下ndk r14b 编译ffmpeg  3.2.5  3.4.5 或者4.1.4均可以成功 二、编译配置 1、下载ffmpeg git clone  https://github.com/FFmpeg/FFmpeg.git git tag  查看分支 git che">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/06/音视频/ffmpeg稳定版编译指南/">
+
+
+
+
+
+  <title>ffmpeg稳定版编译指南 | 只为一个小目标</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e85d2933cf3f92d887a63f7d83c4ab81";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">只为一个小目标</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/音视频/ffmpeg稳定版编译指南/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子衿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只为一个小目标">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ffmpeg稳定版编译指南</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T22:00:38+08:00">
+                2020-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/06/音视频/ffmpeg稳定版编译指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/06/音视频/ffmpeg稳定版编译指南/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、编译环境</p>
+<p>ubunto虚拟机 14.04或者16.04都可以</p>
+<p>openjdk 1.8.0_242或者jdk1.8</p>
+<p>linux虚拟机下ndk r14b</p>
+<p>编译ffmpeg  3.2.5  3.4.5 或者4.1.4均可以成功</p>
+<p>二、编译配置</p>
+<p>1、下载ffmpeg</p>
+<p>git clone  <a href="https://github.com/FFmpeg/FFmpeg.git" target="_blank" rel="noopener">https://github.com/FFmpeg/FFmpeg.git</a></p>
+<p>git tag  查看分支</p>
+<p>git checkout n3.4.5  切换到3.4.5分支</p>
+<p>2、配置configure错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SLIBNAME_WITH_MAJOR=&apos;$(SLIBNAME).$(LIBMAJOR)&apos;</span><br><span class="line">LIB_INSTALL_EXTRA_CMD=&apos;$$(RANLIB) &quot;$(LIBDIR)/$(LIBNAME)&quot;&apos;</span><br><span class="line">SLIB_INSTALL_NAME=&apos;$(SLIBNAME_WITH_VERSION)&apos;</span><br><span class="line">SLIB_INSTALL_LINKS=&apos;$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)&apos;</span><br></pre></td></tr></table></figure>
+<p>替换成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SLIBNAME_WITH_MAJOR=&apos;$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)&apos;</span><br><span class="line">LIB_INSTALL_EXTRA_CMD=&apos;$$(RANLIB)&quot;$(LIBDIR)/$(LIBNAME)&quot;&apos;</span><br><span class="line">SLIB_INSTALL_NAME=&apos;$(SLIBNAME_WITH_MAJOR)&apos;</span><br><span class="line">SLIB_INSTALL_LINKS=&apos;$(SLIBNAME)&apos;</span><br></pre></td></tr></table></figure>
+<p>3、编写build_android.sh</p>
+<ol>
+<li><p>编写build_android.sh的可执行文件</p>
+<p>引用链接</p>
+<p><a href="https://zhuanlan.zhihu.com/p/76462890" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/76462890</a></p>
+<p>下面步骤中主要是</p>
+<p> SYSROOT=$NDK/platforms/android-21/arch-arm</p>
+<p> TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># 清空上次的编译</span><br><span class="line">make clean</span><br><span class="line">#你自己的NDK路径.</span><br><span class="line">export NDK=/home/anjoiner/Documents/AnJoiner/ffmpeg/ndk</span><br><span class="line">function build_android</span><br><span class="line">&#123;</span><br><span class="line">echo &quot;Compiling FFmpeg for $CPU&quot;</span><br><span class="line">./configure \</span><br><span class="line">    --prefix=$PREFIX \</span><br><span class="line">    --enable-neon \</span><br><span class="line">    --enable-hwaccels \</span><br><span class="line">    --enable-gpl \</span><br><span class="line">    --enable-postproc \</span><br><span class="line">    --enable-shared \</span><br><span class="line">    --enable-jni \</span><br><span class="line">    --enable-mediacodec \</span><br><span class="line">    --enable-decoder=h264_mediacodec \</span><br><span class="line">    --disable-static \</span><br><span class="line">    --disable-doc \</span><br><span class="line">    --enable-ffmpeg \</span><br><span class="line">    --disable-ffplay \</span><br><span class="line">    --disable-ffprobe \</span><br><span class="line">    --enable-avdevice \</span><br><span class="line">    --disable-doc \</span><br><span class="line">    --disable-symver \</span><br><span class="line">    --cross-prefix=$CROSS_PREFIX \</span><br><span class="line">    --target-os=android \</span><br><span class="line">    --arch=$ARCH \</span><br><span class="line">    --cpu=$CPU \</span><br><span class="line">    --enable-cross-compile \</span><br><span class="line">    --sysroot=$SYSROOT \</span><br><span class="line">    --extra-cflags=&quot;-Os -fpic $OPTIMIZE_CFLAGS&quot; \</span><br><span class="line">    --extra-ldflags=&quot;$ADDI_LDFLAGS&quot; \</span><br><span class="line">    $ADDITIONAL_CONFIGURE_FLAG</span><br><span class="line">make clean</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">echo &quot;The Compilation of FFmpeg for $CPU is completed&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#armv8-a</span><br><span class="line">ARCH=arm64</span><br><span class="line">CPU=armv8-a</span><br><span class="line">TOOLCHAIN=$NDK/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64</span><br><span class="line">SYSROOT=$NDK/platforms/android-21/arch-$ARCH/</span><br><span class="line">CROSS_PREFIX=$TOOLCHAIN/bin/aarch64-linux-android-</span><br><span class="line">PREFIX=$(pwd)/android/$CPU</span><br><span class="line">OPTIMIZE_CFLAGS=&quot;-march=$CPU&quot;</span><br><span class="line">build_android</span><br><span class="line"></span><br><span class="line">#armv7-a</span><br><span class="line">ARCH=arm</span><br><span class="line">CPU=armv7-a</span><br><span class="line">TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64</span><br><span class="line">SYSROOT=$NDK/platforms/android-21/arch-$ARCH/</span><br><span class="line">CROSS_PREFIX=$TOOLCHAIN/bin/arm-linux-androideabi-</span><br><span class="line">PREFIX=$(pwd)/android/$CPU</span><br><span class="line">OPTIMIZE_CFLAGS=&quot;-mfloat-abi=softfp -mfpu=vfp -marm -march=$CPU &quot;</span><br><span class="line">build_android</span><br><span class="line"></span><br><span class="line">#x86</span><br><span class="line">ARCH=x86</span><br><span class="line">CPU=x86</span><br><span class="line">TOOLCHAIN=$NDK/toolchains/x86-4.9/prebuilt/linux-x86_64</span><br><span class="line">SYSROOT=$NDK/platforms/android-21/arch-$ARCH/</span><br><span class="line">CROSS_PREFIX=$TOOLCHAIN/bin/i686-linux-android-</span><br><span class="line">PREFIX=$(pwd)/android/$CPU</span><br><span class="line">OPTIMIZE_CFLAGS=&quot;-march=i686 -mtune=intel -mssse3 -mfpmath=sse -m32&quot;</span><br><span class="line">build_android</span><br><span class="line"></span><br><span class="line">#x86_64</span><br><span class="line">ARCH=x86_64</span><br><span class="line">CPU=x86-64</span><br><span class="line">TOOLCHAIN=$NDK/toolchains/x86_64-4.9/prebuilt/linux-x86_64</span><br><span class="line">SYSROOT=$NDK/platforms/android-21/arch-$ARCH/</span><br><span class="line">CROSS_PREFIX=$TOOLCHAIN/bin/x86_64-linux-android-</span><br><span class="line">PREFIX=$(pwd)/android/$CPU</span><br><span class="line">OPTIMIZE_CFLAGS=&quot;-march=$CPU -msse4.2 -mpopcnt -m64 -mtune=intel&quot;</span><br><span class="line">build_android</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 build_android.sh</span><br></pre></td></tr></table></figure>
+<p>三、windows下进行使用so库相关配置</p>
+<p>编译成功后在windows下的studio下跑</p>
+<p>同时使用windows下的ndkr16b对整体进行编译,  命令行下ndk-build.cmd  clean 或者 ndk-build.cmd</p>
+<p>1、Android.mk</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">// 将此处的路径改为你ffmepg源码所在位置</span><br><span class="line">LOCAL_C_INCLUDES := /home/anjoiner/Documents/AnJoiner/ffmpeg</span><br><span class="line">LOCAL_PATH := $(call my-dir)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE :=  libavdevice</span><br><span class="line">LOCAL_SRC_FILES := prebuilt/libavdevice.so</span><br><span class="line">include $(PREBUILT_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE :=  libavutil</span><br><span class="line">LOCAL_SRC_FILES := prebuilt/libavutil.so</span><br><span class="line">include $(PREBUILT_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE :=  libswresample</span><br><span class="line">LOCAL_SRC_FILES := prebuilt/libswresample.so</span><br><span class="line">include $(PREBUILT_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE :=  libswscale</span><br><span class="line">LOCAL_SRC_FILES := prebuilt/libswscale.so</span><br><span class="line">include $(PREBUILT_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE := libavcodec</span><br><span class="line">LOCAL_SRC_FILES := prebuilt/libavcodec.so</span><br><span class="line">include $(PREBUILT_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE := libavformat</span><br><span class="line">LOCAL_SRC_FILES := prebuilt/libavformat.so</span><br><span class="line">include $(PREBUILT_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE := libavfilter</span><br><span class="line">LOCAL_SRC_FILES := prebuilt/libavfilter.so</span><br><span class="line">include $(PREBUILT_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE := libpostproc</span><br><span class="line">LOCAL_SRC_FILES := prebuilt/libpostproc.so</span><br><span class="line">include $(PREBUILT_SHARED_LIBRARY)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE := ffmpeg-invoke</span><br><span class="line"></span><br><span class="line">LOCAL_SRC_FILES :=ffmpeg-invoke.cpp \</span><br><span class="line">                 cmdutils.c \</span><br><span class="line">                 ffmpeg_filter.c \</span><br><span class="line">                 ffmpeg_opt.c \</span><br><span class="line">                 ffmpeg_hw.c \</span><br><span class="line">                 ffmpeg.c</span><br><span class="line"></span><br><span class="line">// 将此处的路径改为你ffmepg源码所在位置</span><br><span class="line">LOCAL_C_INCLUDES := /home/anjoiner/Documents/AnJoiner/ffmpeg</span><br><span class="line"></span><br><span class="line">LOCAL_LDLIBS := -llog -ljnigraphics -lz -landroid -lm -pthread -L$(SYSROOT)/usr/lib</span><br><span class="line">LOCAL_SHARED_LIBRARIES := libavdevice libavcodec libavfilter libavformat libavutil libswresample libswscale libpostproc</span><br><span class="line"></span><br><span class="line">include $(BUILD_SHARED_LIBRARY)</span><br></pre></td></tr></table></figure>
+<p>2、Application.mk</p>
+<p>APP_ABI :=  armeabi-v7a</p>
+<p>#APP_ABI := armeabi</p>
+<p>#APP_ABI := arm64-v8a<br>APP_PLATFORM := android-16</p>
+<p>#APP_PIE := false<br>APP_STL := stlport_static</p>
+<p>#APP_STL := c++_static</p>
+<p>3、build.gradle配置 ndk和sourceSets</p>
+<p>defaultConfig {<br>​        applicationId “com.vivo.demo”<br>​        minSdkVersion 16<br>​        targetSdkVersion 26<br>​        versionCode 1<br>​        versionName “1.0”<br>//        testInstrumentationRunner “androidx.test.runner.AndroidJUnitRunner”   ‘armeabi-v7a’,<br>​        ndk { abiFilters ‘armeabi’, ‘armeabi-v7a’ }<br>​        sourceSets {<br>​            main {<br>​                jniLibs.srcDirs = [‘libs’] // i.e. ‘libs’<br>​            }<br>​        }<br>​    }</p>
+<p>四、容易出错点</p>
+<p>1、Android.mk需要添加</p>
+<p>LOCAL_ARM_MODE := arm</p>
+<p>否则会在windows使用ndk编译的时候出现 Thumb does not support conditional execution</p>
+<p>2、对于编译ffmpeg 64位时候会出现不识别汇编符号asm问题，此时可以直接使用32位</p>
+<p>3、最经典的ffmpeg的编译脚本是一下科技的编译，同时也是ijkplayer的参考编译</p>
+<p><a href="https://github.com/yixia/FFmpeg-Android/blob/master/FFmpeg-Android.sh" target="_blank" rel="noopener">https://github.com/yixia/FFmpeg-Android/blob/master/FFmpeg-Android.sh</a></p>
+<p>#!/bin/bash</p>
+<p>DEST=<code>pwd</code>/build/ffmpeg &amp;&amp; rm -rf $DEST<br>SOURCE=<code>pwd</code>/ffmpeg</p>
+<p>if [ -d ffmpeg ]; then<br>  cd ffmpeg<br>else<br>  git clone git://source.ffmpeg.org/ffmpeg.git ffmpeg<br>  cd ffmpeg<br>fi</p>
+<p>git reset –hard<br>git clean -f -d<br>git checkout <code>cat ../ffmpeg-version</code><br>patch -p1 &lt;../FFmpeg-VPlayer.patch<br>[ $PIPESTATUS == 0 ] || exit 1</p>
+<p>git log –pretty=format:%H -1 &gt; ../ffmpeg-version</p>
+<p>TOOLCHAIN=/tmp/vplayer<br>SYSROOT=$TOOLCHAIN/sysroot/<br>$ANDROID_NDK/build/tools/make-standalone-toolchain.sh –platform=android-14 –install-dir=$TOOLCHAIN</p>
+<p>export PATH=$TOOLCHAIN/bin:$PATH<br>export CC=”ccache arm-linux-androideabi-gcc”<br>export LD=arm-linux-androideabi-ld<br>export AR=arm-linux-androideabi-ar</p>
+<p>CFLAGS=”-O3 -Wall -mthumb -pipe -fpic -fasm \<br>  -finline-limit=300 -ffast-math \<br>  -fstrict-aliasing -Werror=strict-aliasing \<br>  -fmodulo-sched -fmodulo-sched-allow-regmoves \<br>  -Wno-psabi -Wa,–noexecstack \<br>  -D__ARM_ARCH_5__ -D__ARM_ARCH_5E__ -D__ARM_ARCH_5T__ -D__ARM_ARCH_5TE__ \<br>  -DANDROID -DNDEBUG”</p>
+<p>FFMPEG_FLAGS=”–target-os=linux \<br>  –arch=arm \<br>  –enable-cross-compile \<br>  –cross-prefix=arm-linux-androideabi- \<br>  –enable-shared \<br>  –disable-symver \<br>  –disable-doc \<br>  –disable-ffplay \<br>  –disable-ffmpeg \<br>  –disable-ffprobe \<br>  –disable-ffserver \<br>  –disable-avdevice \<br>  –disable-avfilter \<br>  –disable-encoders \<br>  –disable-muxers \<br>  –disable-filters \<br>  –disable-devices \<br>  –disable-everything \<br>  –enable-protocols  \<br>  –enable-parsers \<br>  –enable-demuxers \<br>  –enable-decoders \<br>  –enable-bsfs \<br>  –enable-network \<br>  –enable-swscale  \<br>  –disable-demuxer=sbg \<br>  –disable-demuxer=dts \<br>  –disable-parser=dca \<br>  –disable-decoder=dca \<br>  –enable-asm \<br>  –enable-version3”</p>
+<p>for version in neon armv7 vfp armv6; do</p>
+<p>  cd $SOURCE</p>
+<p>  case $version in<br>​    neon)<br>​      EXTRA_CFLAGS=”-march=armv7-a -mfpu=neon -mfloat-abi=softfp -mvectorize-with-neon-quad”<br>​      EXTRA_LDFLAGS=”-Wl,–fix-cortex-a8”<br>​      ;;<br>​    armv7)<br>​      EXTRA_CFLAGS=”-march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=softfp”<br>​      EXTRA_LDFLAGS=”-Wl,–fix-cortex-a8”<br>​      ;;<br>​    vfp)<br>​      EXTRA_CFLAGS=”-march=armv6 -mfpu=vfp -mfloat-abi=softfp”<br>​      EXTRA_LDFLAGS=””<br>​      ;;<br>​    armv6)<br>​      EXTRA_CFLAGS=”-march=armv6”<br>​      EXTRA_LDFLAGS=””<br>​      ;;<br>​    *)<br>​      EXTRA_CFLAGS=””<br>​      EXTRA_LDFLAGS=””<br>​      ;;<br>  esac</p>
+<p>  PREFIX=”$DEST/$version” &amp;&amp; mkdir -p $PREFIX<br>  FFMPEG_FLAGS=”$FFMPEG_FLAGS –prefix=$PREFIX”</p>
+<p>  ./configure $FFMPEG_FLAGS –extra-cflags=”$CFLAGS $EXTRA_CFLAGS” –extra-ldflags=”$EXTRA_LDFLAGS” | tee $PREFIX/configuration.txt<br>  cp config.* $PREFIX<br>  [ $PIPESTATUS == 0 ] || exit 1</p>
+<p>  make clean<br>  make -j4 || exit 1<br>  make install || exit 1</p>
+<p>  rm libavcodec/inverse.o<br>  $CC -lm -lz -shared –sysroot=$SYSROOT -Wl,–no-undefined -Wl,-z,noexecstack $EXTRA_LDFLAGS libavutil/<em>.o libavutil/arm/</em>.o libavcodec/<em>.o libavcodec/arm/</em>.o libavformat/<em>.o libswresample/</em>.o libswscale/*.o -o $PREFIX/libffmpeg.so</p>
+<p>  cp $PREFIX/libffmpeg.so $PREFIX/libffmpeg-debug.so<br>  arm-linux-androideabi-strip –strip-unneeded $PREFIX/libffmpeg.so</p>
+<p>done</p>
+<p>4、对于需要添加libx264支持情况的可以参考下面链接(因为ffmpeg不包含x264)</p>
+<p><a href="https://blog.csdn.net/bobcat_kay/article/details/80889398" target="_blank" rel="noopener">https://blog.csdn.net/bobcat_kay/article/details/80889398</a></p>
+<p>五、参考链接</p>
+<p>编译脚本来源</p>
+<p><a href="https://zhuanlan.zhihu.com/p/76462890" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/76462890</a></p>
+<p>更好的编译脚本来源ijkplayer和一下科技的编译</p>
+<p><a href="https://github.com/yixia/FFmpeg-Android/blob/master/FFmpeg-Android.sh" target="_blank" rel="noopener">https://github.com/yixia/FFmpeg-Android/blob/master/FFmpeg-Android.sh</a></p>
+<p><a href="https://github.com/bilibili/ijkplayer" target="_blank" rel="noopener">https://github.com/bilibili/ijkplayer</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ffmpeg编译/" rel="tag"># ffmpeg编译</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/06/linux/ubunto相关问题/" rel="next" title="ubunto相关问题">
+                <i class="fa fa-chevron-left"></i> ubunto相关问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="子衿">
+          <p class="site-author-name" itemprop="name">子衿</p>
+           
+              <p class="site-description motion-element" itemprop="description">1000篇优质文章的沉淀之路</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kongkonger" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子衿</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://https-kongkonger-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/06/音视频/ffmpeg稳定版编译指南/';
+          this.page.identifier = '2020/04/06/音视频/ffmpeg稳定版编译指南/';
+          this.page.title = 'ffmpeg稳定版编译指南';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-kongkonger-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
