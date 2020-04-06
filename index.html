@@ -307,6 +307,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/linux/ubunto相关问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子衿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只为一个小目标">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/06/linux/ubunto相关问题/" itemprop="url">ubunto相关问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T20:57:58+08:00">
+                2020-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/06/linux/ubunto相关问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/06/linux/ubunto相关问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、ubunto NAT模式下配置上网问题并可以ssh连接</p>
+<p>首先虚拟机三种网络</p>
+<p>vmwarenet1      ———  虚拟机网络配置(虚拟机网络编辑器)       —————       虚拟机内部网络(虚拟机设置和虚拟机的可视界                                                                                       面配置) </p>
+<p>vmwarenet8</p>
+<p>默认nat模式此时是可以上网的</p>
+<p>ubunto虚拟机内部的网络可以参考下面第一个连接，通过ubunto可视界面来进行添加</p>
+<p><img src="/images/ubunto-nat-net.PNG" alt=""></p>
+<p>然后在虚拟机的nat路由网络配置中去掉 DHCP，并应用</p>
+<p>然后再将vmwarenet8改为ip地址和虚拟机内部网络地址的前三部分一致</p>
+<p>另外需要将vmwarenet8下对应的dns页改默认是8.8.8.8，然后第二个默认值是114.114.114.114</p>
+<p>这样虚拟机即可以连接到网络，也可以通过ssh来连接到虚拟机</p>
+<p>二、linux下经典查找命令</p>
+<p>递归查找文件名</p>
+<p>find . -name  “abc*”</p>
+<p>在当前文件夹下查找文件名</p>
+<p>find . -name  “abc*”  -maxdepth 1</p>
+<p>递归查找文件内容</p>
+<p>find . -name “过滤的文件名，没有可以*” | xargs grep “文件内容”</p>
+<p>参考链接</p>
+<p><a href="https://blog.csdn.net/JiaJunLee/article/details/50470643" target="_blank" rel="noopener">https://blog.csdn.net/JiaJunLee/article/details/50470643</a></p>
+<p>参考链接</p>
+<p>1、可以通过ubunto桌面环境，创建ens33，配置静态ip地址，并进行连接</p>
+<p><a href="https://blog.csdn.net/LiuMiao1128/article/details/52449683" target="_blank" rel="noopener">https://blog.csdn.net/LiuMiao1128/article/details/52449683</a></p>
+<p>2、dns相关含义</p>
+<p>8.8.8.8——Google提供的免费DNS服务器的IP地址<br>114.114.114.114——国内用户上网常用的DNS<br>223.5.5.5——阿里 AliDNS。阿里公共DNS是阿里巴巴集团推出的DNS递归解析系统，目标是成为国内互联网基础设施的组成部分，面向互联网用户提供“快速”、“稳定”、“智能”的免费DNS递归解析服务。<br><a href="https://blog.csdn.net/s_lisheng/article/details/78302750" target="_blank" rel="noopener">https://blog.csdn.net/s_lisheng/article/details/78302750</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/java知识/thread实战汇总/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1831,7 +1985,7 @@ synchronized (mReadyFence) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1853,7 +2007,7 @@ synchronized (mReadyFence) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
