@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="纹理 顶点 视口坐标系,">
 
 
 
@@ -94,16 +94,22 @@
 
 
 
-<meta name="description" content="1000篇优质文章的沉淀之路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="只为一个小目标">
-<meta property="og:url" content="http://yoursite.com/archives/2020/01/index.html">
+<meta name="description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序，则">
+<meta name="keywords" content="纹理 顶点 视口坐标系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="opengl图片和纹理">
+<meta property="og:url" content="http://yoursite.com/2020/04/16/opengl/opengl图片和纹理/index.html">
 <meta property="og:site_name" content="只为一个小目标">
-<meta property="og:description" content="1000篇优质文章的沉淀之路">
+<meta property="og:description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序，则">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/phone_image_coordinate.PNG">
+<meta property="og:image" content="http://yoursite.com/images/texture_coordinate.PNG">
+<meta property="og:image" content="http://yoursite.com/images/texture_viewport.PNG">
+<meta property="og:updated_time" content="2020-04-17T14:45:53.947Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="只为一个小目标">
-<meta name="twitter:description" content="1000篇优质文章的沉淀之路">
+<meta name="twitter:title" content="opengl图片和纹理">
+<meta name="twitter:description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序，则">
+<meta name="twitter:image" content="http://yoursite.com/images/phone_image_coordinate.PNG">
 
 
 
@@ -132,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2020/01/">
+  <link rel="canonical" href="http://yoursite.com/2020/04/16/opengl/opengl图片和纹理/">
 
 
 
 
 
-  <title>归档 | 只为一个小目标</title>
+  <title>opengl图片和纹理 | 只为一个小目标</title>
   
 
 
@@ -177,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -291,72 +297,200 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 12 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2020">2020</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/16/opengl/opengl图片和纹理/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子衿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只为一个小目标">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/01/28/java知识/thread实战汇总/" itemprop="url">
-              
-                <span itemprop="name">thread实战汇总</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">opengl图片和纹理</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-01-28T10:47:15+08:00" content="2020-01-28">
-          01-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-16T21:27:39+08:00">
+                2020-04-16
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/opengl/" itemprop="url" rel="index">
+                    <span itemprop="name">opengl</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/16/opengl/opengl图片和纹理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/16/opengl/opengl图片和纹理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <p>一、图片和纹理</p>
+<p>图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的</p>
+<p><img src="/images/phone_image_coordinate.PNG" alt=""></p>
+<p>纹理坐标系是</p>
+<p><img src="/images/texture_coordinate.PNG" alt=""></p>
+<p>图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容</p>
+<p>如何正确的从纹理坐标中按照图片正确方向读入内容呢</p>
+<p>从纹理坐标的左上角开始读入，左上—-&gt;右上—&gt;右下—&gt;左下 的顺序，则是从下到上读入图片的内容，</p>
+<p>然后放入到顶点坐标系中，也是从左下开始放入，此时图片就是正的</p>
+<p>二、视口的作用</p>
+<p>glViewport(x,y,width,height)  决定了在GLSurfaceView大小内我们选取的绘图区域，默认全部使用</p>
+<p>坐标系  左下 —————&gt;  右上</p>
+<p>正交投影和透视投影用于顶点坐标系 顶点坐标系 顶点着色器变换</p>
+<p>视口大小(即绘图区域)</p>
+<p>使得纹理内容能够在绘图区域约束下，不变形的绘制(实际是纹理被按照更小的绘图区域绘制使用)</p>
+<p>即改变纹理的填充区域，默认情况下纹理是填充满视口区域的，但是在正交变换或者透视变换作用下，纹理的填充区域被按照纹理的宽高比例缩小了(未绘制的部分是黑色区域)</p>
+<p>三、加载过程的理解</p>
+<p>图片—–&gt;纹理坐标—-&gt;  正交顶点坐标系—&gt;正交或者透视投影 —-&gt;  有效视口绘制  </p>
+<p><img src="/images/texture_viewport.PNG" alt=""></p>
+<p>1是纹理内容</p>
+<p>2是视口总的大小</p>
+<p>阴影区域是通过正交变换，实际纹理的使用大小</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/纹理-顶点-视口坐标系/" rel="tag"># 纹理 顶点 视口坐标系</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/06/音视频/ffmpeg稳定版编译指南/" rel="next" title="ffmpeg稳定版编译指南">
+                <i class="fa fa-chevron-left"></i> ffmpeg稳定版编译指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -364,6 +498,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -598,11 +743,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   
@@ -621,6 +764,18 @@
       <script id="dsq-count-scr" src="https://https-kongkonger-github-io.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/16/opengl/opengl图片和纹理/';
+          this.page.identifier = '2020/04/16/opengl/opengl图片和纹理/';
+          this.page.title = 'opengl图片和纹理';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-kongkonger-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

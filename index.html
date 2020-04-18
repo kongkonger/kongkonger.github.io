@@ -307,6 +307,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/16/opengl/opengl图片和纹理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子衿">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="只为一个小目标">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/16/opengl/opengl图片和纹理/" itemprop="url">opengl图片和纹理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-16T21:27:39+08:00">
+                2020-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/opengl/" itemprop="url" rel="index">
+                    <span itemprop="name">opengl</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/16/opengl/opengl图片和纹理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/16/opengl/opengl图片和纹理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、图片和纹理</p>
+<p>图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的</p>
+<p><img src="/images/phone_image_coordinate.PNG" alt=""></p>
+<p>纹理坐标系是</p>
+<p><img src="/images/texture_coordinate.PNG" alt=""></p>
+<p>图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容</p>
+<p>如何正确的从纹理坐标中按照图片正确方向读入内容呢</p>
+<p>从纹理坐标的左上角开始读入，左上—-&gt;右上—&gt;右下—&gt;左下 的顺序，则是从下到上读入图片的内容，</p>
+<p>然后放入到顶点坐标系中，也是从左下开始放入，此时图片就是正的</p>
+<p>二、视口的作用</p>
+<p>glViewport(x,y,width,height)  决定了在GLSurfaceView大小内我们选取的绘图区域，默认全部使用</p>
+<p>坐标系  左下 —————&gt;  右上</p>
+<p>正交投影和透视投影用于顶点坐标系 顶点坐标系 顶点着色器变换</p>
+<p>视口大小(即绘图区域)</p>
+<p>使得纹理内容能够在绘图区域约束下，不变形的绘制(实际是纹理被按照更小的绘图区域绘制使用)</p>
+<p>即改变纹理的填充区域，默认情况下纹理是填充满视口区域的，但是在正交变换或者透视变换作用下，纹理的填充区域被按照纹理的宽高比例缩小了(未绘制的部分是黑色区域)</p>
+<p>三、加载过程的理解</p>
+<p>图片—–&gt;纹理坐标—-&gt;  正交顶点坐标系—&gt;正交或者透视投影 —-&gt;  有效视口绘制  </p>
+<p><img src="/images/texture_viewport.PNG" alt=""></p>
+<p>1是纹理内容</p>
+<p>2是视口总的大小</p>
+<p>阴影区域是通过正交变换，实际纹理的使用大小</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/音视频/ffmpeg稳定版编译指南/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1905,166 +2078,6 @@ synchronized (mReadyFence) {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/09/音视频/ffmpeg编译指南/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="子衿">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="只为一个小目标">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/09/音视频/ffmpeg编译指南/" itemprop="url">ffmpeg编译指南</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T08:05:44+08:00">
-                2018-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/音视频/" itemprop="url" rel="index">
-                    <span itemprop="name">音视频</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/09/音视频/ffmpeg编译指南/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/09/音视频/ffmpeg编译指南/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>查看编译的so库是否是正确的版本</p>
-<p>readelf -h *.so 看一下头 ， 如果是写android的so库，一般肯定包含一下信息</p>
-<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Class</span>=ELF32</span><br><span class="line">Machine=ARM</span><br></pre></td></tr></table></figure>
-<p>一、ffmpeg各个版本下载路径</p>
-<p><a href="https://ffmpeg.org/releases/" target="_blank" rel="noopener">https://ffmpeg.org/releases/</a></p>
-<p>二、ffmpeg编译脚本</p>
-<p>引自</p>
-<p><a href="https://blog.csdn.net/leixiaohua1020/article/details/47008825" target="_blank" rel="noopener">https://blog.csdn.net/leixiaohua1020/article/details/47008825</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">make clean</span><br><span class="line">export NDK=$ANDROID_NDK</span><br><span class="line">export PREBUILT=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt</span><br><span class="line">export PLATFORM=$NDK/platforms/android-24/arch-arm</span><br><span class="line">export PREFIX=../simplefflib</span><br><span class="line">build_one()&#123;</span><br><span class="line">  ./configure --target-os=linux --prefix=$PREFIX \</span><br><span class="line">--enable-cross-compile \</span><br><span class="line">--enable-runtime-cpudetect \</span><br><span class="line">--disable-asm \</span><br><span class="line">--arch=arm \</span><br><span class="line">--cc=$PREBUILT/linux-x86_64/bin/arm-linux-androideabi-gcc \</span><br><span class="line">--cross-prefix=$PREBUILT/linux-x86_64/bin/arm-linux-androideabi- \</span><br><span class="line">--disable-stripping \</span><br><span class="line">--nm=$PREBUILT/linux-x86_64/bin/arm-linux-androideabi-nm \</span><br><span class="line">--sysroot=$PLATFORM \</span><br><span class="line">--enable-gpl --enable-shared --disable-static --enable-small \</span><br><span class="line">--disable-ffprobe --disable-ffplay --disable-ffmpeg --disable-ffserver --disable-debug \</span><br><span class="line">--extra-cflags=&quot;-fPIC -DANDROID -D__thumb__ -mthumb -Wfatal-errors -Wno-deprecated -mfloat-abi=softfp -marm -march=armv7-a -m32&quot; \</span><br><span class="line">--extra-ldflags=&quot;-m32&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">build_one</span><br><span class="line"></span><br><span class="line">make -j8</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2113,7 +2126,7 @@ synchronized (mReadyFence) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2124,7 +2137,7 @@ synchronized (mReadyFence) {
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2135,7 +2148,7 @@ synchronized (mReadyFence) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
