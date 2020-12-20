@@ -94,21 +94,21 @@
 
 
 
-<meta name="description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序，则">
+<meta name="description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序(即">
 <meta name="keywords" content="纹理 顶点 视口坐标系">
 <meta property="og:type" content="article">
 <meta property="og:title" content="opengl图片和纹理">
 <meta property="og:url" content="http://yoursite.com/2020/04/16/opengl/opengl图片和纹理/index.html">
 <meta property="og:site_name" content="只为一个小目标">
-<meta property="og:description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序，则">
+<meta property="og:description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序(即">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/phone_image_coordinate.PNG">
 <meta property="og:image" content="http://yoursite.com/images/texture_coordinate.PNG">
 <meta property="og:image" content="http://yoursite.com/images/texture_viewport.PNG">
-<meta property="og:updated_time" content="2020-04-17T14:45:53.947Z">
+<meta property="og:updated_time" content="2020-04-18T15:15:59.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="opengl图片和纹理">
-<meta name="twitter:description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序，则">
+<meta name="twitter:description" content="一、图片和纹理 图片的读取在移动设备中，左上角是 （0，0）点，所以图片的读取是从左上角开始读取的  纹理坐标系是  图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容 如何正确的从纹理坐标中按照图片正确方向读入内容呢 从纹理坐标的左上角开始读入，左上—-&amp;gt;右上—&amp;gt;右下—&amp;gt;左下 的顺序(即">
 <meta name="twitter:image" content="http://yoursite.com/images/phone_image_coordinate.PNG">
 
 
@@ -417,7 +417,7 @@
 <p><img src="/images/texture_coordinate.PNG" alt=""></p>
 <p>图片的读入是从左上角开始读入，放入到纹理坐标中是从纹理坐标的左下角开始放入，所以默认情况下是上下颠倒的，即从纹理坐标下面读入的是图片上面的内容</p>
 <p>如何正确的从纹理坐标中按照图片正确方向读入内容呢</p>
-<p>从纹理坐标的左上角开始读入，左上—-&gt;右上—&gt;右下—&gt;左下 的顺序，则是从下到上读入图片的内容，</p>
+<p>从纹理坐标的左上角开始读入，左上—-&gt;右上—&gt;右下—&gt;左下 的顺序(即保证开始读入的是图片的底部)，则是从下到上读入图片的内容，</p>
 <p>然后放入到顶点坐标系中，也是从左下开始放入，此时图片就是正的</p>
 <p>二、视口的作用</p>
 <p>glViewport(x,y,width,height)  决定了在GLSurfaceView大小内我们选取的绘图区域，默认全部使用</p>
@@ -471,6 +471,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/20/音视频/exoplayer分析实践1/" rel="prev" title="exoplayer分析实践1">
+                exoplayer分析实践1 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -543,7 +547,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -565,7 +569,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
